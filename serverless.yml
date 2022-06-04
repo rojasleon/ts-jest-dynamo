@@ -1,0 +1,18 @@
+service: jest-dynamo
+
+provider:
+  name: aws
+  stage: dev
+  runtime: nodejs14.x
+
+functions:
+  create:
+    handler: src/lambdas/create.handler
+    events:
+      - httpApi:
+          path: /hello
+          method: post
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
